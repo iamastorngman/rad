@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171526">
+  <title>Chakastani Room — Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="chat-page">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand-row">
+          <img class="brand-logo" src="https://tse4.mm.bing.net/th/id/OIP.QrHRI-DeANanZhpqg7JrBQHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="BF logo">
+          <span>Chakastani Room</span>
+        </div>
+        <div class="profile-chip"><div class="avatar">{{ username[:1]|upper }}</div><div><b>{{ username }}</b><small>In the room</small></div></div>
+      </div>
+      <div class="sidebar-label">YOUR GROUP</div>
+      <div class="room-item active"><div class="room-avatar">♥</div><div class="room-copy"><b>Chakastani Room</b><small>Private group chat</small></div><span class="online-dot"></span></div>
+      <div class="sidebar-note">A private room for your favourite people.</div>
+      <form action="{{ url_for('logout') }}" method="post" class="logout-form"><button class="logout-button">Log out</button></form>
+    </aside>
+    <main class="conversation">
+      <header class="chat-header">
+        <div class="room-avatar large">♥</div>
+        <div><h2>Chakastani Room</h2><p><span class="online-dot"></span> Private conversation</p></div>
+        <div class="header-tag">PRIVATE CHAT</div>
+      </header>
+      <section id="messages" class="messages" aria-live="polite">
+        <div class="welcome"><div class="welcome-icon">✦</div><h3>Welcome to Chakastani Room.</h3><p>Say hello, share a photo, or send a video.</p></div>
+      </section>
+      <form id="composer" class="composer">
+        <input id="fileInput" type="file" hidden>
+        <button id="attachButton" class="attach-button" type="button" aria-label="Attach a file" title="Attach a photo, video or file">+</button>
+        <textarea id="messageInput" rows="1" maxlength="2000" placeholder="Write a message…" aria-label="Write a message"></textarea>
+        <button id="sendButton" type="submit" aria-label="Send message">Send <span>➤</span></button>
+      </form>
+      <div id="uploadStatus" class="upload-status" role="status"></div>
+      <div class="composer-hint">Press Enter to send · Shift + Enter for a new line · + to attach files (max 24 MB)</div>
+    </main>
+  </div>
+  <script>window.CURRENT_USERNAME = {{ username|tojson }};</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
