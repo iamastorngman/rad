@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BestFriends — Messages</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="chat-page">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand-row"><div class="brand-mark small">bf</div><span>BestFriends</span></div>
+        <div class="profile-chip"><div class="avatar">{{ username[:1]|upper }}</div><div><b>{{ username }}</b><small>In the room</small></div></div>
+      </div>
+      <div class="sidebar-label">MESSAGES</div>
+      <div class="room-item active"><div class="room-avatar">♥</div><div class="room-copy"><b>Best friends room</b><small>Private group chat</small></div><span class="online-dot"></span></div>
+      <div class="sidebar-note">A private room for your favourite people.</div>
+      <form action="{{ url_for('logout') }}" method="post" class="logout-form"><button class="logout-button">Log out</button></form>
+    </aside>
+    <main class="conversation">
+      <header class="chat-header">
+        <div class="room-avatar large">♥</div>
+        <div><h2>Best friends room</h2><p><span class="online-dot"></span> Private conversation</p></div>
+        <div class="header-tag">PRIVATE CHAT</div>
+      </header>
+      <section id="messages" class="messages" aria-live="polite">
+        <div class="welcome">
+          <div class="welcome-icon">✦</div>
+          <h3>Welcome to your space.</h3>
+          <p>Say hello and start the conversation.</p>
+        </div>
+      </section>
+      <form id="composer" class="composer">
+        <textarea id="messageInput" rows="1" maxlength="2000" placeholder="Write a message…" aria-label="Write a message"></textarea>
+        <button id="sendButton" type="submit" aria-label="Send message">Send <span>➤</span></button>
+      </form>
+      <div class="composer-hint">Press Enter to send · Shift + Enter for a new line</div>
+    </main>
+  </div>
+  <script>window.CURRENT_USERNAME = {{ username|tojson }};</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
