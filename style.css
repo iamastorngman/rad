@@ -18,3 +18,18 @@ h1,h2,h3,p{margin-top:0}h1{font:800 32px Manrope;letter-spacing:-1.5px;margin-bo
 .chat-image{display:block;max-width:min(100%,360px);max-height:360px;object-fit:contain;border-radius:12px;margin-top:8px;cursor:zoom-in}.chat-video{display:block;width:min(100%,420px);max-height:360px;border-radius:12px;margin-top:8px;background:#171526}.file-link{display:inline-block;margin-top:6px;color:inherit;font-weight:700;text-decoration:none;overflow-wrap:anywhere}.file-link:hover{text-decoration:underline}
 .composer{margin:0 30px;border:1px solid #eae7f1;border-radius:15px;padding:8px;display:flex;align-items:flex-end;gap:10px}.composer textarea{flex:1;resize:none;border:0;outline:0;padding:10px 9px;font:13px 'DM Sans';max-height:120px;min-height:39px}.composer textarea:focus{box-shadow:none}.composer button{border:0;background:var(--purple);color:white;border-radius:11px;padding:12px 17px;font-weight:700;font-size:12px;cursor:pointer}.composer button:disabled{opacity:.55}.composer .attach-button{width:40px;height:39px;padding:0;border-radius:11px;font-size:26px;line-height:1;background:#f1edff;color:#7656e7;flex:0 0 40px}.upload-status{min-height:14px;text-align:center;font-size:11px;color:#8a6ce7;padding-top:5px}.composer-hint{text-align:center;font-size:10px;color:#b0adbb;padding:8px 0 17px}
 @media(max-width:700px){.chat-page{padding:0}.app-shell{height:100vh;min-height:0;border-radius:0;grid-template-columns:1fr}.sidebar{display:none}.chat-header{padding:0 17px}.messages{padding:20px 16px}.composer{margin:0 12px;gap:7px}.header-tag{font-size:8px}.message{max-width:88%}.login-card{padding:30px 24px}.chat-video{width:100%}}
+
+
+/* Chakastani Room branding and file sharing */
+.brand-logo{width:42px;height:32px;object-fit:cover;border-radius:9px;background:#f1eef8}
+.login-logo{width:112px;height:72px;object-fit:cover;border-radius:15px;display:block}
+.attach-button{width:42px;height:42px;flex:0 0 42px;padding:0!important;border-radius:12px!important;background:#f1edff!important;color:#7556df!important;font-size:27px!important;line-height:1}
+.attach-button:hover{background:#e8e0ff!important}
+.attach-button:disabled{opacity:.5}
+.upload-status{min-height:14px;text-align:center;font-size:10px;color:#8066d8;padding:4px 0 0}
+.chat-image{display:block;max-width:min(100%,360px);max-height:320px;object-fit:contain;border-radius:11px;margin-top:7px;cursor:zoom-in}
+.chat-video{display:block;width:min(100%,420px);max-height:330px;border-radius:11px;margin-top:7px;background:#171526}
+.file-attachment{display:inline-flex;align-items:center;gap:7px;color:inherit;font-weight:700;text-decoration:none;padding:8px 10px;border-radius:9px;background:#0000000b;margin-top:5px}
+.mine .file-attachment{color:white;background:#ffffff22}
+.attachment-name{font-size:10px;opacity:.75;margin-top:6px;overflow-wrap:anywhere}
+@media(max-width:700px){.brand-logo{width:38px;height:29px}.chat-video{max-height:240px}}
