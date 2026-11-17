@@ -1,4 +1,4 @@
-# BestFriends Chat
+# Chakastani Room
 
 A private, Instagram-inspired group chat built with Python (Flask), HTML, CSS, and JavaScript.
 
@@ -7,7 +7,7 @@ A private, Instagram-inspired group chat built with Python (Flask), HTML, CSS, a
 - Choose a chat display name
 - Shared group chat for everyone using the same server
 - Messages stored in a local SQLite database
-- Near-live message updates (polling every 1.8 seconds)
+- Near-live message updates (polling every 1.8 seconds)\n- Share image, video, and other files (24 MB per file)\n- Play shared videos directly in the chat
 - Responsive layout for desktop and mobile
 
 ## Run on Windows
