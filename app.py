@@ -9,10 +9,9 @@ from flask import Flask, request, session, redirect, url_for, render_template, j
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(APP_DIR, "chat.db")
 UPLOAD_DIR = os.path.join(APP_DIR, "uploads")
-MAX_UPLOAD_BYTES = 24 * 1024 * 1024  # 24 MB per file
+MAX_UPLOAD_BYTES = 24 * 1024 * 1024
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "change-this-secret-key-before-deployment")
 app.config["MAX_CONTENT_LENGTH"] = MAX_UPLOAD_BYTES
@@ -36,7 +35,6 @@ def init_db():
                 attachment_type TEXT
             )
         """)
-        # Upgrade databases created by the earlier chat version.
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(messages)")}
         for name in ("attachment_url", "attachment_name", "attachment_type"):
             if name not in columns:
@@ -69,7 +67,7 @@ def create_message(body="", attachment_url=None, attachment_name=None, attachmen
         "attachment_name": attachment_name, "attachment_type": attachment_type
     }
 
-@app.route("/", methods=["GET"])
+@app.get("/")
 def home():
     if not session.get("authenticated"):
         return redirect(url_for("login"))
@@ -130,20 +128,13 @@ def upload_file():
     extension = os.path.splitext(original_name)[1][:16]
     stored_name = f"{uuid.uuid4().hex}{extension}"
     content_type = (uploaded.mimetype or "application/octet-stream").lower()
-    if content_type.startswith("image/"):
-        kind = "image"
-    elif content_type.startswith("video/"):
-        kind = "video"
-    else:
-        kind = "file"
+    kind = "image" if content_type.startswith("image/") else "video" if content_type.startswith("video/") else "file"
     uploaded.save(os.path.join(UPLOAD_DIR, stored_name))
-    message = create_message(
-        body="",
+    return jsonify(create_message(
         attachment_url=url_for("uploaded_file", filename=stored_name),
         attachment_name=original_name,
         attachment_type=kind
-    )
-    return jsonify(message), 201
+    )), 201
 
 @app.get("/uploads/<path:filename>")
 @logged_in
@@ -158,7 +149,6 @@ def too_large(_error):
 def health():
     return {"status": "ok"}
 
-# Run database creation/migrations when PythonAnywhere imports this WSGI app.
 init_db()
 
 if __name__ == "__main__":
